@@ -2,12 +2,6 @@ import { sizeAt } from '../lib/scale.js';
 import { MEASURE } from '../lib/typography.js';
 import { SPECIMEN } from '../lib/presets.js';
 
-function sampleFor(step) {
-  if (step > 0) return SPECIMEN.heading;
-  if (step === 0) return SPECIMEN.body;
-  return SPECIMEN.sentence;
-}
-
 export default function Specimen({ scale, cfg, simVw, onSimVw }) {
   return (
     <section className="panel" id="specimen" aria-label="Type scale preview">
@@ -40,7 +34,10 @@ export default function Specimen({ scale, cfg, simVw, onSimVw }) {
           // Cap the rendered size so a dramatic scale can't blow out the panel;
           // the meta line still reports the true computed px.
           const shown = Math.min(px, 112);
-          const isBody = s.step <= 0;
+          // The base step shows wrapping body copy (to demo the measure). Every
+          // other step shows the full pangram on one line, truncating with an
+          // ellipsis only when it's too large to fit.
+          const isBody = s.step === 0;
           return (
             <li className="specimen__row" key={s.name}>
               <div className="specimen__meta">
@@ -50,14 +47,14 @@ export default function Specimen({ scale, cfg, simVw, onSimVw }) {
                 <code className="specimen__clamp mono">{s.css}</code>
               </div>
               <p
-                className="specimen__sample"
+                className={`specimen__sample${isBody ? '' : ' specimen__sample--truncate'}`}
                 style={{
                   fontSize: `${shown}px`,
                   lineHeight: s.lineHeight,
                   maxWidth: isBody ? `${MEASURE.ideal}ch` : undefined,
                 }}
               >
-                {sampleFor(s.step)}
+                {isBody ? SPECIMEN.body : SPECIMEN.pangram}
               </p>
             </li>
           );

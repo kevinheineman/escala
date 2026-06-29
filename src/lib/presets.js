@@ -64,9 +64,9 @@ export const SAMPLES = [
 
 /** Sample text for the live specimen. */
 export const SPECIMEN = {
-  word: 'Ag',
-  heading: 'The quick brown fox',
-  sentence: 'Sphinx of black quartz, judge my vow.',
+  // Shown in full when it fits; truncated with an ellipsis when the size is too
+  // large for the row.
+  pangram: 'The quick brown fox jumps over the lazy dog',
   body:
     'Good typography is mostly invisible. A well-tuned scale gives every level a clear job, so a reader moves from headline to body without friction — and it should hold up whether the page is 320 or 1440 pixels wide.',
 };

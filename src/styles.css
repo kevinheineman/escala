@@ -465,6 +465,12 @@ a {
   color: var(--text);
   overflow-wrap: break-word;
 }
+/* Heading + small rows: keep the pangram on one line, ellipsis when it overflows. */
+.specimen__sample--truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* ---- accessibility checks ---- */
 .checks {
