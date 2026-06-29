@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escala — accessible fluid type scale generator</title>
+    <meta
+      name="description"
+      content="Build a fluid, responsive type scale with clamp(). Accessibility guardrails baked in — 16px body floor, zoom-safe (WCAG 1.4.4), line-height pairing, optimal measure — with CSS, Tailwind, and design-token export."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f7f9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Social share -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://get-escala.vercel.app/" />
+    <meta property="og:title" content="Escala — type that scales, verified" />
+    <meta
+      property="og:description"
+      content="A fluid type scale generator with accessibility built in: clamp() output, a 16px body floor, zoom-safe sizing, line-height pairing, and CSS / Tailwind / design-token export."
+    />
+    <meta property="og:image" content="https://get-escala.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Escala fluid type scale" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://get-escala.vercel.app/og.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Set theme before paint to avoid a flash of the wrong mode -->
+    <script>
+      try {
+        var t =
+          localStorage.getItem('escala-theme') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <style>
+      html {
+        background: #f5f7f9;
+      }
+      html[data-theme='dark'] {
+        background: #0d1117;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
